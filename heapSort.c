@@ -58,14 +58,14 @@ void isParent(int* ptr, int* height, int n)
 	}
 }
 // boolen function for chekcing if the node is in heap order
-int isOrder(int arr[], int index, int n)
+int isOrder(int* arr_ptr, int index, int n)
 {
 	int l = left(index, n); int r = right(index, n);
-	if (arr[index] > arr[l] && arr[index] > arr[r]) { return 1; }
+	if (arr_ptr[index] > arr_ptr[l] && arr_ptr[index] > arr_ptr[r]) { return 1; }
 	return 0;
 }
 // returns an info about index changes
-void heapOr(int arr[], int* i, int n)
+void heapOr(int* arr, int* i, int n)
 {
 	int l = left(*i, n); int r = right(*i, n);
 	static int largest;
@@ -80,19 +80,18 @@ void heapOr(int arr[], int* i, int n)
 	*i = largest;
 }
 // check if each index is in order(triplet) if not in order, heap
-void drive(int arr[], int root, int n)
+void drive(int* arr, int root, int n)
 {
 	// int* local_root = &root;
 	// while not in order, do the ordering
 	while(!isOrder(arr, root, n))
 	{	
 		int* local_root = &root;
-		heapOr(arr, local_root, n); // this acts like a recursive call thet should havebeen done in heapOr
+		heapOr(arr, local_root, n);
 		root = *local_root; // updating the root value acts like a recursion
-		// no need for the explicit recursion, results are just fine
 	}
 }
-void heapsort(int arr[], int n)
+void heapsort(int* arr, int n)
 {
 	for (int i = n; i >= 1; i--)
 	{
@@ -107,12 +106,11 @@ int main(void)
 {
 	int arr[SIZE];
 	// read form the input file and fill the local array
-	FILE* myfile = fopen("IntegerArray.txt", "r");
-	FILE* short_input = fopen("inputArray.txt", "w");
+	FILE* myfile = fopen("inputArray.tx", "r");
 	for (size_t i = 0; i < SIZE; ++i)
 	{
 		fscanf(myfile, "%d", &arr[i]);
-		fprintf(short_input, "%d\n", arr[i]);
+		
 	}
 	
 	int mid = (int)floor(SIZE / 2) + 1;	printf("mid_index = %d\n", mid);
