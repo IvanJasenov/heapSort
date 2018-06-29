@@ -106,7 +106,7 @@ int main(void)
 {
 	int arr[SIZE];
 	// read form the input file and fill the local array
-	FILE* myfile = fopen("inputArray.tx", "r");
+	FILE* myfile = fopen("inputArray.txt", "r");
 	for (size_t i = 0; i < SIZE; ++i)
 	{
 		fscanf(myfile, "%d", &arr[i]);
